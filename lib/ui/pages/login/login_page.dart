@@ -1,49 +1,38 @@
+import 'package:amigo_fiel/presentation/presenters/getx_login_presenter.dart';
 import 'package:amigo_fiel/ui/components/components.dart';
 import 'package:amigo_fiel/ui/pages/login/login.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  final LoginPresenter presenter;
+class LoginPage extends StatelessWidget {
+  final GetxLoginPresenter presenter;
 
   const LoginPage({super.key, required this.presenter});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  void _hideKeyboard() {
-    final currentFocus = FocusScope.of(context);
-    if (!currentFocus.hasPrimaryFocus) {
-      currentFocus.unfocus();
-    }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    widget.presenter.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    void hideKeyboard() {
+      final currentFocus = FocusScope.of(context);
+      if (!currentFocus.hasPrimaryFocus) {
+        currentFocus.unfocus();
+      }
+    }
+
     return SafeArea(
       child: Scaffold(
         body: Builder(
           builder: (context) {
-            widget.presenter.isLoadingStream.listen((isLoading) {
+            presenter.isLoading.listen((isLoading) {
               if (isLoading) {
                 showLoading(context);
               } else {
                 hideLoading(context);
               }
             });
-            widget.presenter.mainErrorStream.listen((error) {
+            presenter.mainError.listen((error) {
               if (error != null) {}
             });
             return GestureDetector(
-              onTap: _hideKeyboard,
+              onTap: hideKeyboard,
               child: SingleChildScrollView(
                 child: Container(
                   padding: const EdgeInsets.all(30),
@@ -51,27 +40,24 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const LoginHeader(),
-                      Provider(
-                        create: (_) => widget.presenter,
-                        child: Form(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              EmailInput(),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              PasswordInput(),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              ForgotPassword(),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              LoginButton()
-                            ],
-                          ),
+                      Form(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            EmailInput(),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            PasswordInput(),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            ForgotPassword(),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            LoginButton()
+                          ],
                         ),
                       ),
                     ],

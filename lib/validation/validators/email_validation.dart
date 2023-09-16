@@ -3,6 +3,7 @@ import 'package:amigo_fiel/validation/protocols/fields_validation.dart';
 import 'package:equatable/equatable.dart';
 
 class EmailValidation extends Equatable implements FieldValidation {
+  @override
   final String field;
 
   @override

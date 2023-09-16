@@ -1,6 +1,6 @@
-import 'package:amigo_fiel/ui/pages/login/login_presenter.dart';
+import 'package:amigo_fiel/presentation/presenters/getx_login_presenter.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -9,17 +9,14 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final presenter = Provider.of<LoginPresenter>(context);
+    final presenter = Get.find<GetxLoginPresenter>();
     return SizedBox(
       width: double.infinity,
-      child: StreamBuilder<bool>(
-        stream: presenter.isFormValidStream,
-        builder: (context, snapshot) {
-          return ElevatedButton(
-            onPressed: snapshot.data == true ? presenter.auth : null,
-            child: const Text("LOGIN"),
-          );
-        },
+      child: Obx(
+        () => ElevatedButton(
+          onPressed: presenter.isFormValid.value == true ? presenter.auth : null,
+          child: const Text("LOGIN"),
+        ),
       ),
     );
   }

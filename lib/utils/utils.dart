@@ -1,6 +1,6 @@
 export './colors.dart';
 export './constants.dart';
-export './format-cep.dart';
+export 'format_cep.dart';
 export './images.dart';
 export './sizes.dart';
 export '../ui/components/themes/theme.dart';

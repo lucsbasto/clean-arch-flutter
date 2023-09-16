@@ -1,15 +1,14 @@
 import 'package:amigo_fiel/ui/helpers/errors/ui_errors.dart';
+import 'package:get/get.dart';
 
 abstract class LoginPresenter {
-  Stream<UIError?> get emailErrorStream;
-  Stream<UIError?> get passwordErrorStream;
-  Stream<UIError?> get mainErrorStream;
-
-  Stream<bool> get isFormValidStream;
-  Stream<bool> get isLoadingStream;
+  Rx<UIError?> get emailError;
+  Rx<UIError?> get passwordError;
+  Rx<UIError?> get mainError;
+  RxBool get isFormValid;
+  RxBool get isLoading;
 
   void validateEmail(String email);
   void validatePassword(String password);
   Future<void> auth();
-  void dispose();
 }

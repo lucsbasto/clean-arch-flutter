@@ -49,6 +49,7 @@ class UserEntity {
       isVerified: json['isVerified'],
     );
   }
+
   UserEntity toEntity() => UserEntity(
         accessToken: accessToken,
         id: id,
