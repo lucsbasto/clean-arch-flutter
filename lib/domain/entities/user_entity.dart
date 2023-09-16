@@ -1,16 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:amigo_fiel/data/http/http_errors.dart';
+import 'package:equatable/equatable.dart';
 
-class UserEntity {
-  String id;
-  String accessToken;
-  String firstName;
-  String lastName;
-  String phoneNumber;
-  String email;
-  String isAdmin;
-  String isVerified;
-  UserEntity({
+class UserEntity extends Equatable {
+  final String id;
+  final String accessToken;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String email;
+  final String isAdmin;
+  final String isVerified;
+  const UserEntity({
     required this.id,
     required this.accessToken,
     required this.firstName,
@@ -60,4 +61,7 @@ class UserEntity {
         isAdmin: isAdmin,
         isVerified: isVerified,
       );
+
+  @override
+  List<Object?> get props => [id, accessToken, firstName, lastName, phoneNumber, email, isAdmin, isVerified];
 }

@@ -34,7 +34,7 @@ dependencies:
   http: 0.13.3
   equatable: 2.0.3
   get: 4.3.8
-  flutter_secure_storage: 4.2.1
+  flutter_secure_storage: ^8.1.0
   localstorage: 4.0.0+1
   carousel_slider: 4.0.0
   intl: 0.17.0

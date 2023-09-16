@@ -1,7 +1,6 @@
-import 'package:amigo_fiel/main/factories/pages/login/login_validation_factory.dart';
-import 'package:amigo_fiel/main/factories/usecases/authentication/authentication_factory.dart';
-import 'package:amigo_fiel/presentation/presenters/getx_login_presenter.dart';
+import 'package:amigo_fiel/main/factories/factories.dart';
+import 'package:amigo_fiel/presentation/presenters/presenters.dart';
 
 GetxLoginPresenter makeGetxLoginPresenter() {
-  return GetxLoginPresenter(makeLoginValidation(), makeRemoteAuthentication());
+  return GetxLoginPresenter(makeLoginValidation(), makeRemoteAuthentication(), makeLocalSaveCurrentAccount());
 }

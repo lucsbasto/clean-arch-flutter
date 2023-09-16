@@ -1,6 +1,5 @@
+import 'package:amigo_fiel/domain/usecases/save_current_account.dart';
 import 'package:get/get.dart';
-
-import '../../domain/helpers/domain_error.dart';
 
 import '../../domain/usecases/authentication.dart';
 import '../protocols/validation.dart';
@@ -8,7 +7,7 @@ import '../protocols/validation.dart';
 class GetxLoginPresenter extends GetxController {
   final Validation validation;
   final Authentication authentication;
-
+  final SaveCurrentAccount saveCurrentAccount;
   String? _email;
   String? _password;
 
@@ -18,7 +17,7 @@ class GetxLoginPresenter extends GetxController {
   final isFormValid = RxBool(false);
   final isLoading = RxBool(false);
 
-  GetxLoginPresenter(this.validation, this.authentication);
+  GetxLoginPresenter(this.validation, this.authentication, this.saveCurrentAccount);
 
   void validateEmail(String email) {
     _email = email;
@@ -53,20 +52,13 @@ class GetxLoginPresenter extends GetxController {
   }
 
   Future<void> auth() async {
-    isLoading.value = true;
     try {
-      await authentication.auth(AuthenticationParams(email: _email!, password: _password!));
-    } on DomainError catch (error) {
-      switch (error) {
-        case DomainError.invalidCredentials:
-          mainError.value = 'Credenciais inválidas';
-          break;
-        default:
-          mainError.value = 'Erro estranho';
-          break;
-      }
-      print(error);
+      isLoading.value = true;
+      final user = await authentication.auth(AuthenticationParams(email: _email!, password: _password!));
+      await saveCurrentAccount.save(user);
+    } catch (error) {
+      mainError.value = error.toString();
+      isLoading.value = false;
     }
-    isLoading.value = false;
   }
 }

@@ -1,1 +1,2 @@
-export './authentication/authentication_factory.dart';
+export './authentication/authentication.dart';
+export './cache/cache.dart';
