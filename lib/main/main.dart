@@ -1,4 +1,6 @@
-import 'package:amigo_fiel/main/factories/pages/login/login_page_factory.dart';
+import 'package:amigo_fiel/main/factories/pages/pages.dart';
+import 'package:amigo_fiel/ui/pages/maps/maps_page.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import '../utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,8 +22,19 @@ class App extends StatelessWidget {
       theme: CustomThemeData.lightTheme,
       darkTheme: CustomThemeData.darkTheme,
       themeMode: ThemeMode.system,
-      initialRoute: '/login',
-      getPages: [GetPage(name: '/login', page: makeLoginPage)],
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: makeSplashPage),
+        GetPage(name: '/login', page: makeLoginPage),
+        GetPage(
+            name: '/maps',
+            page: () => Scaffold(
+                  appBar: AppBar(
+                    title: Text('Maps'),
+                  ),
+                  body: Text('Maps'),
+                )),
+      ],
     );
   }
 }

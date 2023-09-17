@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:ffi';
-
 import 'package:amigo_fiel/data/http/http_errors.dart';
 import 'package:equatable/equatable.dart';
 
@@ -48,8 +45,8 @@ class UserEntity extends Equatable {
       lastName: json['lastName'],
       phoneNumber: json['phoneNumber'],
       email: json['email'],
-      isAdmin: json['isAdmin'],
-      isVerified: json['isVerified'],
+      isAdmin: json['isAdmin'].toLowerCase() == true,
+      isVerified: json['isVerified'].toLowerCase() == true,
     );
   }
 

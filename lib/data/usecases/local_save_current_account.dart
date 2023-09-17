@@ -2,7 +2,6 @@ import 'package:amigo_fiel/data/cache/save_secure_cache_storage.dart';
 
 import '../../../domain/entities/entities.dart';
 import '../../../domain/usecases/usecases.dart';
-import '../../domain/helpers/domain_error.dart';
 
 class LocalSaveCurrentAccount implements SaveCurrentAccount {
   final SaveSecureCacheStorage saveSecureCacheStorage;
@@ -14,7 +13,7 @@ class LocalSaveCurrentAccount implements SaveCurrentAccount {
     try {
       final properties = account.toJson().entries;
       for (final property in properties) {
-        await saveSecureCacheStorage.save(key: property.key, value: property.value);
+        await saveSecureCacheStorage.save(key: property.key, value: '${property.value}');
       }
     } catch (error) {
       rethrow;
