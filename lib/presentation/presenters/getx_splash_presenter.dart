@@ -1,11 +1,11 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:get/get.dart';
 
 import 'package:amigo_fiel/domain/usecases/usecases.dart';
 
 class GetxSplashPresenter extends GetxController {
   final LoadCurrentAccount loadCurrentAccount;
-
+  final LoadFeedspots loadAllFeedspots;
+  final SaveCurrentFeedspots saveCurrentFeedspots;
   RxBool animate = false.obs;
 
   final _navigateTo = RxString('');
@@ -13,6 +13,8 @@ class GetxSplashPresenter extends GetxController {
 
   GetxSplashPresenter({
     required this.loadCurrentAccount,
+    required this.loadAllFeedspots,
+    required this.saveCurrentFeedspots,
   });
 
   Future<void> loadAccount() async {
@@ -22,6 +24,17 @@ class GetxSplashPresenter extends GetxController {
       _navigateTo.value = account == null ? '/login' : '/maps';
     } catch (e) {
       _navigateTo.value = '/login';
+    }
+  }
+
+  Future<void> loadFeedspots() async {
+    try {
+      final fetchedFeedspots = await loadAllFeedspots.load();
+      for (final feedspot in fetchedFeedspots) {
+        await saveCurrentFeedspots.save(feedspot);
+      }
+    } catch (error) {
+      print(error);
     }
   }
 

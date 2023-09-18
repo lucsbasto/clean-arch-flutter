@@ -24,4 +24,25 @@ class AddressEntity {
       cep: formatCEP(json['cep']),
     );
   }
+
+  AddressEntity toEntity() {
+    return AddressEntity(
+      id: id,
+      street: street,
+      number: number,
+      block: block,
+      cep: cep,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['street'] = street;
+    data['number'] = number;
+    data['block'] = block;
+    data['cep'] = cep;
+
+    return data;
+  }
 }

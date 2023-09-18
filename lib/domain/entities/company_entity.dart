@@ -28,4 +28,29 @@ class CompanyEntity {
       phoneNumber: json['phoneNumber'],
     );
   }
+
+  CompanyEntity toEntity() {
+    return CompanyEntity(
+      id: id,
+      name: name,
+      address: address,
+      description: description,
+      logoUrl: logoUrl,
+      websiteUrl: websiteUrl,
+      phoneNumber: phoneNumber,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['address'] = address;
+    data['description'] = description;
+    data['logoUrl'] = logoUrl;
+    data['websiteUrl'] = websiteUrl;
+    data['phoneNumber'] = phoneNumber;
+
+    return data;
+  }
 }

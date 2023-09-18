@@ -3,6 +3,7 @@ import 'package:amigo_fiel/ui/pages/splash/components/components.dart';
 import 'package:amigo_fiel/presentation/presenters/presenters.dart';
 import 'package:amigo_fiel/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashPage extends StatelessWidget with NavigationManager {
   final GetxSplashPresenter presenter;
@@ -12,14 +13,14 @@ class SplashPage extends StatelessWidget with NavigationManager {
   @override
   Widget build(BuildContext context) {
     presenter.startSplashAnimation();
+    presenter.loadFeedspots();
     presenter.loadAccount();
-
     return Scaffold(
       body: Builder(
         builder: (context) {
           presenter.navigateToStream.listen((page) {
             if (page.isNotEmpty == true) {
-              handleNavigation(presenter.navigateToStream, clear: true);
+              Get.toNamed(page);
             }
           });
           return Stack(

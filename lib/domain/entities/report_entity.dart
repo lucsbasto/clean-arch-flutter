@@ -3,7 +3,7 @@ import 'package:amigo_fiel/domain/entities/entities.dart';
 class Report {
   final int id;
   final UserEntity user;
-  final FeedSpotEntity feedSpot;
+  final FeedspotEntity feedSpot;
   final String description;
   final String imageUrl;
 

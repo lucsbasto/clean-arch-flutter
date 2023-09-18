@@ -12,6 +12,7 @@ class HttpAdapter implements HttpClient {
 
   @override
   Future<dynamic> request({required String url, required String method, Map? body, Map? headers}) async {
+    print(url);
     final defaultHeaders = headers?.cast<String, String>() ?? {}
       ..addAll({'content-type': 'application/json', 'accept': 'application/json'});
     final jsonBody = body != null ? jsonEncode(body) : null;
