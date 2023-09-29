@@ -1,6 +1,5 @@
 import 'package:amigo_fiel/domain/entities/entities.dart';
 import 'package:amigo_fiel/utils/utils.dart';
-import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FeedspotEntity {
@@ -14,7 +13,7 @@ class FeedspotEntity {
   AddressEntity? address;
   String fullAddress;
   List<UserEntity>? likedBy;
-  List<Image>? images;
+  List<ImageEntity>? images;
   CompanyEntity? sponsoredBy;
   FeedspotEntity({
     required this.id,
@@ -48,6 +47,9 @@ class FeedspotEntity {
           ? List<UserEntity>.from(json['likedBy'].map((userJson) => UserEntity.fromJson(userJson)))
           : null,
       sponsoredBy: null,
+      images: json['images'] != null
+          ? List<ImageEntity>.from(json['images'].map((image) => ImageEntity.fromJson(image)))
+          : null,
       address: json['address'] != null ? AddressEntity.fromJson(json['address']) : null,
       fullAddress: getFullAddress(json['address']),
     );
@@ -65,7 +67,7 @@ class FeedspotEntity {
       address: address != null ? address!.toEntity() : null,
       fullAddress: fullAddress,
       likedBy: likedBy != null ? likedBy!.map((user) => user.toEntity()).toList() : null,
-      images: images,
+      images: images != null ? images!.map((image) => image.toEntity()).toList() : [],
       sponsoredBy: sponsoredBy != null ? sponsoredBy!.toEntity() : null,
     );
   }

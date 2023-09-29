@@ -10,7 +10,7 @@ class GetxMapPresenter extends GetxController {
   final GetxFeedspotPresenter feedspotPresenter;
   final GetxPanelPresenter panelPresenter;
 
-  Rx<LatLng> currentPosition = Rx<LatLng>(const LatLng(-10.277615138090594, -48.33330385386944));
+  Rx<LatLng> currentPosition = Rx<LatLng>(const LatLng(-10.206200647149904, -48.345459289848804));
   RxList<Marker> markers = <Marker>[].obs;
   BitmapDescriptor markerIconFull = BitmapDescriptor.defaultMarker;
   BitmapDescriptor markerIconEmpty = BitmapDescriptor.defaultMarker;
@@ -36,7 +36,7 @@ class GetxMapPresenter extends GetxController {
       position: position,
       icon: markerIconFull,
       onTap: () {
-        panelPresenter.showPanel();
+        panelPresenter.openPanel();
       },
     );
     markers.add(marker);
@@ -78,7 +78,7 @@ class GetxMapPresenter extends GetxController {
         icon: markerIconFull,
         onTap: () {
           feedspotPresenter.setFeedspot(feedspot);
-          panelPresenter.openPanel();
+          panelPresenter.showPanel();
         });
     markers.add(marker);
   }

@@ -2,27 +2,27 @@ import 'package:get/get.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class GetxPanelPresenter extends GetxController {
-  final RxBool isPanelVisible = false.obs;
-  final PanelController controller = PanelController();
-  bool get isVisible => isPanelVisible.value;
+  PanelController controller = PanelController();
+  final RxBool _isPanelVisible = true.obs;
+  bool get isVisible => _isPanelVisible.value;
 
   void showPanel() {
-    isPanelVisible.value = true;
+    _isPanelVisible.value = true;
     controller.show();
   }
 
   void hidePanel() {
-    isPanelVisible.value = false;
+    _isPanelVisible.value = false;
     controller.hide();
   }
 
   void openPanel() {
-    isPanelVisible.value = true;
+    _isPanelVisible.value = true;
     controller.open();
   }
 
   void closePanel() {
-    isPanelVisible.value = false;
+    _isPanelVisible.value = false;
     controller.close();
   }
 }

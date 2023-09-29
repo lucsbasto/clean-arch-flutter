@@ -21,7 +21,7 @@ class GetxSplashPresenter extends GetxController {
     await Future.delayed(const Duration(seconds: 5));
     try {
       final account = await loadCurrentAccount.load();
-      _navigateTo.value = account == null ? '/login' : '/maps';
+      _navigateTo.value = account == null ? '/login' : '/home';
     } catch (e) {
       _navigateTo.value = '/login';
     }

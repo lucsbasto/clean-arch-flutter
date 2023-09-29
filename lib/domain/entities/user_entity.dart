@@ -10,6 +10,7 @@ class UserEntity extends Equatable {
   final String email;
   final bool isAdmin;
   final bool isVerified;
+  final String avatarUrl;
   const UserEntity({
     required this.id,
     required this.accessToken,
@@ -19,6 +20,7 @@ class UserEntity extends Equatable {
     required this.email,
     required this.isAdmin,
     required this.isVerified,
+    required this.avatarUrl,
   });
 
   Map<String, dynamic> toJson() {
@@ -31,6 +33,7 @@ class UserEntity extends Equatable {
       'email': email,
       'isAdmin': isAdmin,
       'isVerified': isVerified,
+      'avatarUrl': avatarUrl
     };
   }
 
@@ -45,22 +48,23 @@ class UserEntity extends Equatable {
       lastName: json['lastName'],
       phoneNumber: json['phoneNumber'],
       email: json['email'],
-      isAdmin: json['isAdmin'].toLowerCase() == true,
-      isVerified: json['isVerified'].toLowerCase() == true,
+      isAdmin: json['isAdmin'].toString().toLowerCase() == 'true',
+      isVerified: json['isVerified'].toString().toLowerCase() == 'true',
+      avatarUrl: json['avatarUrl'],
     );
   }
 
   UserEntity toEntity() => UserEntity(
-        accessToken: accessToken,
-        id: id,
-        firstName: firstName,
-        lastName: lastName,
-        phoneNumber: phoneNumber,
-        email: email,
-        isAdmin: isAdmin,
-        isVerified: isVerified,
-      );
+      accessToken: accessToken,
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      email: email,
+      isAdmin: isAdmin,
+      isVerified: isVerified,
+      avatarUrl: avatarUrl);
 
   @override
-  List<Object?> get props => [id, accessToken, firstName, lastName, phoneNumber, email, isAdmin, isVerified];
+  List<Object?> get props => [id, accessToken, firstName, lastName, phoneNumber, email, isAdmin, isVerified, avatarUrl];
 }

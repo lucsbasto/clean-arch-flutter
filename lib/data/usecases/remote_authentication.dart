@@ -1,7 +1,6 @@
 import '../http/http.dart';
 import '../http/http_errors.dart';
 
-import '../../domain/helpers/domain_error.dart';
 import '../../domain/entities/entities.dart';
 import '../../domain/usecases/usecases.dart';
 
@@ -18,7 +17,7 @@ class RemoteAuthentication implements Authentication {
       final httpResponse = await httpClient.request(url: url, method: 'post', body: body);
       return UserEntity.fromJson(httpResponse).toEntity();
     } on HttpError catch (error) {
-      throw error == HttpError.unauthorized ? DomainError.invalidCredentials : DomainError.unexpected;
+      throw error == HttpError.unauthorized ? 'Credenciais Invalidas' : '${error}';
     }
   }
 }

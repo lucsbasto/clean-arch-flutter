@@ -1,18 +1,22 @@
 // ignore: file_names
-class Image {
+class ImageEntity {
   String id;
   String imageUrl;
 
-  Image({
+  ImageEntity({
     required this.id,
     required this.imageUrl,
   });
 
-  factory Image.fromJson(Map<String, dynamic> json) {
-    return Image(id: json['id'], imageUrl: json['imageUrl']);
+  factory ImageEntity.fromJson(Map<String, dynamic> json) {
+    return ImageEntity(id: json['id'], imageUrl: json['imageUrl']);
   }
 
-  static List<Image> fromJsonList(List<dynamic> jsonList) {
-    return jsonList.map((json) => Image.fromJson(json)).toList();
+  ImageEntity toEntity() {
+    return ImageEntity(id: id, imageUrl: imageUrl);
+  }
+
+  static List<ImageEntity> fromJsonList(List<dynamic> jsonList) {
+    return jsonList.map((json) => ImageEntity.fromJson(json)).toList();
   }
 }

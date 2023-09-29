@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 Widget makeMapsPage() {
   final presenter = Get.put<GetxMapPresenter>(makeGetxMapsPresenter());
   final panelPresenter = Get.put<GetxPanelPresenter>(makeGetxPanelPresenter());
+
   return MapsPage(
     presenter: presenter,
     panelPresenter: panelPresenter,

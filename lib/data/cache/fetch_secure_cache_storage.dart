@@ -1,3 +1,4 @@
 abstract class FetchSecureCacheStorage {
-  Future<Map<String, dynamic>> fetch();
+  Future<String?> fetch(String key);
+  Future<Map<String, dynamic>> fetchAll();
 }

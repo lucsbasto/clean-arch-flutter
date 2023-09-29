@@ -3,3 +3,4 @@ export 'address_entity.dart';
 export 'badges_entity.dart';
 export 'company_entity.dart';
 export 'feedspot_entity.dart';
+export 'images_entity.dart';

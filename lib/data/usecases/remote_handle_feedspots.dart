@@ -1,10 +1,11 @@
+import 'package:amigo_fiel/domain/usecases/fill_feedspot.dart';
 import 'package:amigo_fiel/domain/usecases/usecases.dart';
 
 import '../http/http.dart';
 
 import '../../domain/entities/entities.dart';
 
-class RemoteHandleFeedspots implements LoadFeedspots, LoadFeedspotsById {
+class RemoteHandleFeedspots implements LoadFeedspots, LoadFeedspotsById, FillFeedspot {
   final HttpClient httpClient;
   final String url;
 
@@ -29,6 +30,21 @@ class RemoteHandleFeedspots implements LoadFeedspots, LoadFeedspotsById {
 
   @override
   Future<FeedspotEntity> loadById(String id) async {
+    try {
+      final httpResponse = await httpClient.request(
+        url: url,
+        method: 'get',
+      );
+      return FeedspotEntity.fromJson(httpResponse).toEntity();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<FeedspotEntity> fill({
+    required String feedspotId,
+  }) async {
     try {
       final httpResponse = await httpClient.request(
         url: url,

@@ -11,8 +11,9 @@ class LocalLoadFeedspots implements LoadFeedspots {
   @override
   Future<List<FeedspotEntity>> load() async {
     try {
-      final feedspots = await fetchSecureCacheStorage.fetch();
-      return [];
+      final feedspotsMap = await fetchSecureCacheStorage.fetch();
+      final List<FeedspotEntity> feedspots = [];
+      return feedspots;
     } catch (error) {
       rethrow;
     }

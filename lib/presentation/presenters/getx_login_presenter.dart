@@ -56,6 +56,7 @@ class GetxLoginPresenter extends GetxController {
       isLoading.value = true;
       final user = await authentication.auth(AuthenticationParams(email: _email!, password: _password!));
       await saveCurrentAccount.save(user);
+      Get.toNamed('/home');
     } catch (error) {
       mainError.value = error.toString();
       isLoading.value = false;

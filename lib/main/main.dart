@@ -1,3 +1,4 @@
+import 'package:amigo_fiel/main/factories/pages/home/home_page_factory.dart';
 import 'package:amigo_fiel/main/factories/pages/maps/maps_page_factory.dart';
 import 'package:amigo_fiel/main/factories/pages/pages.dart';
 import '../utils/utils.dart';
@@ -21,11 +22,11 @@ class App extends StatelessWidget {
       theme: CustomThemeData.lightTheme,
       darkTheme: CustomThemeData.darkTheme,
       themeMode: ThemeMode.system,
-      initialRoute: '/',
+      initialRoute: '/home',
       getPages: [
         GetPage(name: '/', page: makeSplashPage),
         GetPage(name: '/login', page: makeLoginPage),
-        GetPage(name: '/maps', page: makeMapsPage),
+        GetPage(name: '/home', page: makeHomePage),
       ],
     );
   }
